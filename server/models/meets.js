@@ -2,7 +2,9 @@
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Meet extends Model {
-    
+    static associate({ User, Member }) {
+      this.belongsToMany(User, { through: Member });
+    }
     static associate({ User }) {
       // define association here
       this.belongsTo(User, { foreignKey: 'creator', as: 'user' })
@@ -24,6 +26,14 @@ module.exports = (sequelize, DataTypes) => {
         room: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        meetName: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        description: {
+          type: DataTypes.STRING,
+          allowNull: true,
         }
     },
     {

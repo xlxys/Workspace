@@ -44,7 +44,12 @@ module.exports = (sequelize, DataTypes) => {
                 notNull: { msg: 'User must have a role' },
                 notEmpty: { msg: 'role must not be empty' },
             },
-        }
+        },
+        managerApp: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 0,
+        },
       
         
         },

@@ -1,29 +1,207 @@
+<head>
+    <style>
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #085426;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 100px;
+            z-index: 1;
+            width: 180px;
+            font-size: medium;
+            border-radius: 25px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            width: 300px;
+            border-radius: 25px;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text],
+        .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus,
+        .form-container textarea {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+</head>
+
+
 
 <body id="page-top">
-    <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: url(&quot;/img/badr.png&quot;) left / contain no-repeat, #085426;">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+    <%if (manager) {%>
+    <button type="button" class="open-button" onclick="openForm()" id="btnvert">Creer une reunion</button>
+
+    <div class="form-popup" id="myForm">
+        <div class="form-container">
+            <div class="form">
+                <form class="user" action="/meet" method="post">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Nom de la reunion" name="meetName">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="formGroupExampleInput2"
+                            placeholder="Salle de la reunion" name="meetRoom">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Description de la reunion" name="meetDescription"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input class="form-control" id="date" name="date" placeholder="Date de la reunion"
+                            type="date" />
+                        <input class="form-control" id="time" name="time" placeholder="Date de la reunion"
+                            type="time" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-primary d-block btn-user w-100" type="submit"
+                            style="background: #085426;">Create Meet</button>
+                        <button type="button" class="btn btn-primary d-block btn-user w-100" onclick="closeForm()"
+                            style="background: #d11414; margin-top: 10px;">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%}%>
+    <div id="wrapper" onclick="closeForm()">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+            style="background: url(&quot;/img/badr.png&quot;) left / contain no-repeat, #085426;">
+            <div class="container-fluid d-flex flex-column p-0"><a
+                    class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"></div>
                     <div class="sidebar-brand-text mx-3"><span>MY WORKSPACE</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/meet"><i class="fas fa-table"></i><span>Réunion</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-user-circle"></i><span>Se Déconnecter</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard"><i
+                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile"><i
+                                class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/meet"><i
+                                class="far fa-calendar"></i><span>Réunion</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-user-circle"></i><span>Se
+                                Déconnecter</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
+                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4"></h3>
+                    <h3 class="text-center text-dark mb-1">Your Meets</h3>
                 </div>
+                <div class="container py-4 py-xl-5">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+
+                        <% if (membre.length !=0) { %>
+                            <% for(var i=0;i< membre.length;i++) { %>
+
+                                <div class="card">
+
+                                    <div class="card-body p-4">
+                                        <p class="text-primary card-text mb-0">
+                                            <%= membre[i].MeetName %>
+                                        </p>
+                                        <h4 class="card-title">
+                                            <%= membre[i].room %>
+                                        </h4>
+                                        <p class="card-text">
+                                            <%= membre[i].meetDate %>
+                                        </p>
+                                        <p class="card-text">
+                                            <%= membre[i].Description %>
+                                        </p>
+                                        <div class="d-flex">
+                                            <div>
+                                                <p class="fw-bold mb-0">
+                                                    <%= membre[i].creator %>
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="text-align:center; margin: 10px;">
+                                        <a href="/meet/<%=membre[i].uuid %>"><button class="btn btn-primary"
+                                                type="button">join</button></a>
+                                    </div>
+                                </div>
+
+                                <%}%>
+                                    <%} else { %>
+                                        <div style="text-align:center;">
+                                            <h1>You are added in no Meet</h1>
+                                        </div>
+                                        <% } %>
+                    </div>
+                </div>
+
+
+
+
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
@@ -33,5 +211,18 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
 
-</body>
 
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+
+
+
+</body>

@@ -1,0 +1,104 @@
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+            style="background: rgb(210,213,221);">
+            <div class="container-fluid d-flex flex-column p-0"><a
+                    class="navbar-brand text-center d-flex justify-content-center align-items-center sidebar-brand m-0"
+                    href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"></div>
+                    <div class="text-center sidebar-brand-text mx-3"></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="/admin"><i class="fa fa-dashboard"
+                                style="color: rgb(0,0,0);"></i><span
+                                style="color: rgb(0,0,0);font-weight: bold;">Dashboard</span></a></li>
+
+                    <li class="nav-item"><a class="nav-link active" href="/admin/users"><i class="fas fa-table"
+                                style="color: rgb(0,0,0);"></i><span
+                                style="color: rgb(0,0,0);font-weight: bold;">Table</span></a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="/logout"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor"
+                                style="color: rgb(0,0,0);">
+
+                                <path
+                                    d="M256 112c-48.6 0-88 39.4-88 88C168 248.6 207.4 288 256 288s88-39.4 88-88C344 151.4 304.6 112 256 112zM256 240c-22.06 0-40-17.95-40-40C216 177.9 233.9 160 256 160s40 17.94 40 40C296 222.1 278.1 240 256 240zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-46.73 0-89.76-15.68-124.5-41.79C148.8 389 182.4 368 220.2 368h71.69c37.75 0 71.31 21.01 88.68 54.21C345.8 448.3 302.7 464 256 464zM416.2 388.5C389.2 346.3 343.2 320 291.8 320H220.2c-51.36 0-97.35 26.25-124.4 68.48C65.96 352.5 48 306.3 48 256c0-114.7 93.31-208 208-208s208 93.31 208 208C464 306.3 446 352.5 416.2 388.5z">
+                                </path>
+                            </svg><span style="color: rgb(0,0,0);font-weight: bold;">logout</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button" style="background: rgba(0,0,0,0.35);"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4" style="margin: 15px;">Edit User</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Editing form</p>
+                        </div>
+                        <div class="card-body">
+                            <form class="user" method="post" action="/admin/users/edit/<%=user.id%>">
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user"
+                                            type="text" id="first_name" placeholder="First Name" name="first_name"
+                                            value="<%= user.firstName %>" /></div>
+                                    <div class="col-sm-6"><input class="form-control form-control-user" type="text"
+                                            id="last_name" placeholder="Last Name" name="last_name"
+                                            value="<%= user.lastName %>"></div>
+                                </div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="email"
+                                        id="email" aria-describedby="emailHelp" placeholder="Email Address" name="email" value="<%= user.email %>">
+                                </div>
+                                <div class="form-check">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <%if ( user.status=='BASIC' ) {%>
+                                            <select class="form-control form-control-user" type="text"
+                                                id="exampleStatusInput" placeholder="Status" name="status">
+                                                <option value="BASIC" selected="selected">BASIC</option>
+                                                <option value="MANAGER">MANAGER</option>
+                                                <option value="ADMIN">ADMIN</option>
+                                            </select>
+                                            <%}%>
+
+                                                <%if ( user.status=='MANAGER' ) {%>
+                                                    <select class="form-control form-control-user" type="text"
+                                                        id="exampleStatusInput" placeholder="Status" name="status">
+                                                        <option value="BASIC">BASIC</option>
+                                                        <option value="MANAGER" selected="selected">MANAGER</option>
+                                                        <option value="ADMIN">ADMIN</option>
+                                                    </select>
+                                                    <%}%>
+
+                                                        <%if ( user.status=='ADMIN' ) {%>
+                                                            <select class="form-control form-control-user" type="text"
+                                                                id="exampleStatusInput" placeholder="Status"
+                                                                name="status">
+                                                                <option value="BASIC">BASIC</option>
+                                                                <option value="MANAGER">MANAGER</option>
+                                                                <option value="ADMIN" selected="selected">ADMIN</option>
+                                                            </select>
+                                                            <%}%>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-primary d-block btn-user w-100" type="submit" onClick="location.reload();""
+                                    style="background: #6778d4;">Edit User</button>
+                                <hr>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2022</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+</body>

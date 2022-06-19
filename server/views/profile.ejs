@@ -1,31 +1,38 @@
-
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: url(&quot;/img/badr.png&quot;) left / contain no-repeat, #085426;">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+            style="background: url(&quot;/img/badr.png&quot;) left / contain no-repeat, #085426;">
+            <div class="container-fluid d-flex flex-column p-0"><a
+                    class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"></div>
                     <div class="sidebar-brand-text mx-3"><span>MY WORKSPACE</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/meet"><i class="fas fa-table"></i><span>Réunion</span></a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-user-circle"></i><span>Se Déconnecter</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard"><i
+                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/profile"><i
+                                class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/meet"><i
+                                class="far fa-calendar"></i><span>Réunion</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-user-circle"></i><span>Se
+                                Déconnecter</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
+                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
                 </nav>
-                <div class="container-fluid">
+                <div class="container-fluid"
+                    style="background: url(&quot;/img/badr.png&quot;) right / contain no-repeat;">
                     <h3 class="text-dark mb-4">Profile</h3>
                     <div class="row mb-3">
-                       
+
                         <div class="col-lg-8">
                             <div class="row">
                                 <div class="col">
@@ -34,31 +41,69 @@
                                             <p class="text-primary m-0 fw-bold">User Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form class="user" action="/profile" method="post">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username"></div>
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="email"><strong>Email Address</strong></label><input
+                                                                class="form-control" type="email" id="email"
+                                                                placeholder="user@example.com" name="email"
+                                                                value="<%=info.email%>"></div>
                                                     </div>
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" placeholder="<%=info.email%>" name="email"></div>
-                                                    </div>
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" placeholder="<%=info.firstName%>" name="first_name"></div>
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="first_name"><strong>First
+                                                                    Name</strong></label><input class="form-control"
+                                                                type="text" id="first_name" placeholder="John"
+                                                                name="first_name" value="<%=info.firstName%>"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="<%=info.lastName%>" name="last_name"></div>
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="last_name"><strong>Last Name</strong></label><input
+                                                                class="form-control" type="text" id="last_name"
+                                                                placeholder="Deo" name="last_name"
+                                                                value="<%=info.lastName%>"></div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"></div>
-                                            </form><button class="btn btn-primary btn-sm" type="submit" style="background: #085426;">Save Settings</button>
+                                                <button class="btn btn-primary btn-sm" type="submit"
+                                                    onClick="location.reload();" style="background: #085426;">Save
+                                                    Settings</button>
+                                            </form>
+                                        </div>
+                                        <br>
+
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold">User Settings</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="user" action="/profile/password" method="post">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="password"><strong>Password</strong></label><input
+                                                                class="form-control" type="password" id="password"
+                                                                placeholder="*******" name="password"></div>
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="password_repeat"><strong>Confirm
+                                                                    Password</strong></label><input class="form-control"
+                                                                type="password" id="password_repeat"
+                                                                placeholder="*******" name="password_repeat"></div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-sm" type="submit"
+                                                    style="background: #085426;">change password</button>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="card shadow"></div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="card shadow mb-5"></div>
                 </div>
@@ -72,4 +117,3 @@
     </div>
 
 </body>
-
